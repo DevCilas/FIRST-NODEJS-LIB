@@ -1,5 +1,5 @@
-const { log } = require('console');
 const fs = require('fs');
+const { resourceUsage } = require('process');
 //*FS é file system um módulo é usado para ler um arquivo dentro do sistema do compuatdor
 //*Além de ler o arqeuivo, podemos fazer update, deletar, criar e renomear.
 //*OBS: Uma biblioteca é um conjunto de modulos, modolus são códigos reutilizavéis
@@ -18,6 +18,50 @@ fs.readFile(link, 'utf-8', (err, texto)=>{
         console.error('Erro no arquivo');
         return
     }
+
+    splitIntoParagraphs(texto);
+})
+
+function clearText(text){
+    text = text.toLowerCase().normalize();
+    text = text.replace(/[.,:;?!()]/g, '');
+    return text
+
+}
+
+function splitIntoParagraphs(text){
+    // text = text.split('\n');
+    // return text
+    //*O código acima pdoe ser apenas:
+    text = text.split('\n');
+    console.log(text)
+}
+
+function separetedWords(text){
+    return text.split(' ');
+    
+}
+
+function createObject(array){
+    const paragraphs ={};
+    for (elemento of array){
+        if(!(elemento in paragraphs)){
+            paragraphs[elemento] = 1
+        }
+        else{
+            paragraphs[elemento] += 1
+        }
+    }
+    return paragraphs
+}
+
+function finalText(text){
+    text = clearText(text);
+    text = splitIntoParagraphs(text);
+    // text=separetedWords(text);
+    const result = createObject(text)
+    console.log(result);
+}
 
     checkDuplicatedWords(texto)
 })
