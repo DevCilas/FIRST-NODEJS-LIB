@@ -19,7 +19,7 @@ fs.readFile(link, 'utf-8', (err, texto)=>{
         return
     }
 
-    splitIntoParagraphs(texto);
+    finalText(texto);
 })
 
 function clearText(text){
@@ -33,57 +33,26 @@ function splitIntoParagraphs(text){
     // text = text.split('\n');
     // return text
     //*O código acima pdoe ser apenas:
-    text = text.split('\n');
-    console.log(text)
+    return text.split('\n');  
 }
 
-function separetedWords(text){
-    return text.split(' ');
-    
+function mostraAlg(array){
+    array.map((palavra)=>{
+        return palavra + 'olá'
+    })
 }
 
-function createObject(array){
-    const paragraphs ={};
-    for (elemento of array){
-        if(!(elemento in paragraphs)){
-            paragraphs[elemento] = 1
-        }
-        else{
-            paragraphs[elemento] += 1
-        }
-    }
-    return paragraphs
-}
+
+
+
 
 function finalText(text){
     text = clearText(text);
-    text = splitIntoParagraphs(text);
-    // text=separetedWords(text);
-    const result = createObject(text)
-    console.log(result);
+    text= splitIntoParagraphs(text);
+    text = mostraAlg(text)
+    console.log(text);
 }
 
-    checkDuplicatedWords(texto)
-})
 
-
-function limpaPalavras(palavra){
-    palavra = palavra.normalize('NFD').replace(/['',.:;?/()]/g, '')
-    palavra = palavra.toLowerCase()
-}
-
-function separaParagrafo(texto){
-    texto = texto.split('\n')
-    return texto
-    
-}
-
-separaParagrafo(link)
-
-
-function checkDuplicadteWords(texto){
-    separaParagrafo(texto)
-
-}
 
 
